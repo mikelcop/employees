@@ -1,0 +1,56 @@
+<div>
+  <br />
+  <mat-card>
+    <section class="mat-typography">
+      <h3>Login</h3>
+    </section>
+    <mat-divider></mat-divider>
+    <br />
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <h5 *ngIf="success">Your form is valid!</h5>
+      <section>
+        <mat-form-field class="field-full-width">
+          <input
+            matInput
+            placeholder="Username"
+            formControlName="username"
+            type="text"
+            #title
+          />
+          <div
+            *ngIf="submitted && loginForm.controls.username.errors"
+            class="error"
+          >
+            <div *ngIf="loginForm.controls.username.errors.required">
+              Your username is required, bro.
+            </div>
+          </div>
+        </mat-form-field>
+      </section>
+      <section>
+        <mat-form-field class="field-full-width">
+          <input
+            matInput
+            placeholder="Password"
+            formControlName="password"
+            type="password"
+            #title
+          />
+          <div
+            *ngIf="submitted && loginForm.controls.password.errors"
+            class="error"
+          >
+            <div *ngIf="loginForm.controls.password.errors.required">
+              A Password is required
+            </div>
+          </div>
+        </mat-form-field>
+      </section>
+      <section>
+        <button type="submit" mat-raised-button color="primary">
+          Login
+        </button>
+      </section>
+    </form>
+  </mat-card>
+</div>

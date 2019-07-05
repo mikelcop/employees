@@ -1,0 +1,73 @@
+<div>
+  <br />
+  <mat-card>
+    <section class="mat-typography">
+      <h3>Update Employee</h3>
+    </section>
+    <mat-divider></mat-divider>
+    <br />
+    <form [formGroup]="updateForm" class="edit-form">
+      <mat-form-field class="field-full-width">
+        <input
+          matInput
+          placeholder="Full Name"
+          formControlName="employee_name"
+          #employee_name
+        />
+        <!--<mat-error *ngIf="addEmployeeForm.controls['employee_name'].errors.required">
+            Title is <strong>required</strong>
+          </mat-error>-->
+      </mat-form-field>
+      <mat-form-field class="field-full-width">
+        <input
+          matInput
+          placeholder="User ID"
+          formControlName="user_id"
+          #user_id
+        />
+      </mat-form-field>
+      <mat-form-field class="field-full-width">
+        <input
+          matInput
+          [value]="updateForm.get('time_in').value | date: 'shortTime'"
+          placeholder="Time-In"
+          formControlName="time_in"
+          #time_in
+        />
+      </mat-form-field>
+      <mat-form-field class="field-full-width">
+        <input
+          matInput
+          [value]="updateForm.get('time_out').value | date: 'shortTime'"
+          placeholder="Time-Out"
+          formControlName="time_out"
+          #time_out
+        />
+      </mat-form-field>
+      <mat-slide-toggle
+        class="field-full-width"
+        [color]="color"
+        [checked]="active"
+        [disabled]="disabled"
+        formControlName="active"
+      >
+        Active
+      </mat-slide-toggle>
+
+      <mat-divider></mat-divider>
+      <br /><br />
+      <button mat-raised-button color="accent" routerLink="/employees">
+        Back</button
+      >&nbsp;
+      <button
+        type="submit"
+        (click)="updateEmployee(updateForm.controls)"
+        [disabled]="updateForm.pristine || updateForm.invalid"
+        mat-raised-button
+        color="primary"
+      >
+        Save
+      </button>
+    </form>
+  </mat-card>
+</div>

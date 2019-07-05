@@ -1,0 +1,72 @@
+<div>
+  <br />
+  <mat-card>
+    <section class="mat-typography">
+      <h3>New Employee Form</h3>
+    </section>
+    <mat-divider></mat-divider>
+    <br />
+    <form [formGroup]="addEmployeeForm" class="create-form">
+      <mat-form-field class="field-full-width">
+        <input
+          matInput
+          placeholder="Full Name"
+          formControlName="employee_name"
+          #title
+        />
+        <!--<mat-error *ngIf="addEmployeeForm.controls['employee_name'].errors.required">
+            Title is <strong>required</strong>
+          </mat-error>-->
+      </mat-form-field>
+      <mat-form-field class="field-full-width">
+        <input
+          matInput
+          placeholder="User ID"
+          formControlName="user_id"
+          #responsible
+        />
+      </mat-form-field>
+      <mat-form-field class="field-full-width">
+        <input
+          matInput
+          placeholder="Time-In"
+          formControlName="time_in"
+          #description
+        />
+      </mat-form-field>
+      <mat-form-field class="field-full-width">
+        <input
+          matInput
+          placeholder="Time-Out"
+          formControlName="time_out"
+          #description
+        />
+      </mat-form-field>
+      <section class="field-full-width">
+        <mat-slide-toggle
+          [color]="color"
+          [checked]="active"
+          [disabled]="disabled"
+          formControlName="active"
+        >
+          Active
+        </mat-slide-toggle>
+      </section>
+
+      <mat-divider></mat-divider>
+      <br /><br />
+      <button mat-raised-button color="accent" routerLink="/employees">
+        Back</button
+      >&nbsp;
+      <button
+        type="submit"
+        (click)="addEmployee(addEmployeeForm.controls)"
+        [disabled]="addEmployeeForm.pristine || addEmployeeForm.invalid"
+        mat-raised-button
+        color="primary"
+      >
+        Save
+      </button>
+    </form>
+  </mat-card>
+</div>
