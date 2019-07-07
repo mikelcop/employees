@@ -10,9 +10,12 @@ let Employee = new Schema({
     type: String
   },
   time_in: {
-    type: Date
+    type: String
   },
   time_out: {
+    type: String
+  },
+  date_created: {
     type: Date
   },
   active: {

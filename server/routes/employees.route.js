@@ -1,4 +1,5 @@
 const router = require("express").Router();
+import verify from "./verifyToken";
 import Employee from "../models/Employee";
 
 router.route("/").get((req, res) => {
@@ -15,6 +16,13 @@ router.route("/:id").get((req, res) => {
   });
 });
 
+router.route("/user/:user_id").get((req, res) => {
+  Employee.find({ user_id: req.params.user_id }, (err, employee) => {
+    if (err) console.log(err);
+    else res.json(employee);
+  });
+});
+
 router.route("/add").post((req, res) => {
   let employee = new Employee(req.body);
   employee
@@ -23,6 +31,7 @@ router.route("/add").post((req, res) => {
       res.status(200).json({ employee: "Added successfully" });
     })
     .catch(err => {
+      console.log(err);
       res.status(400).send("Failed to create new record");
     });
 });
@@ -33,6 +42,7 @@ router.route("/update/:id").post((req, res) => {
     else {
       employee.user_id = req.body.user_id;
       employee.employee_name = req.body.employee_name;
+      employee.date_created = req.body.date_created;
       employee.time_in = req.body.time_in;
       employee.time_out = req.body.time_out;
       employee.active = req.body.active;

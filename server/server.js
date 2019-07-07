@@ -5,9 +5,9 @@ import mongoose from "mongoose";
 
 import authRoutes from "./routes/auth.route";
 import employeesRoutes from "./routes/employees.route";
+import verify from "./routes/verifyToken";
 
 const app = express();
-const router = express.Router();
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -20,7 +20,9 @@ app.use(bodyParser.json());
 /* 
   Enable this if dont have Mongodb in local machine.  Just make sure you have internet connection
 */
-mongoose.connect(process.env.DB_CONNECTION);
+mongoose.connect(
+  "mongodb://devuser1:password1@ds347367.mlab.com:47367/employee_record"
+);
 
 const connection = mongoose.connection;
 

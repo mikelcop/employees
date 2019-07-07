@@ -26,23 +26,26 @@
           #user_id
         />
       </mat-form-field>
+
       <mat-form-field class="field-full-width">
         <input
           matInput
-          [value]="updateForm.get('time_in').value | date: 'shortTime'"
           placeholder="Time-In"
           formControlName="time_in"
           #time_in
+          [ngxTimepicker]="timeInPicker"
         />
+        <ngx-material-timepicker #timeInPicker></ngx-material-timepicker>
       </mat-form-field>
       <mat-form-field class="field-full-width">
         <input
           matInput
-          [value]="updateForm.get('time_out').value | date: 'shortTime'"
           placeholder="Time-Out"
           formControlName="time_out"
           #time_out
+          [ngxTimepicker]="timeOutPicker"
         />
+        <ngx-material-timepicker #timeOutPicker></ngx-material-timepicker>
       </mat-form-field>
       <mat-slide-toggle
         class="field-full-width"
@@ -56,7 +59,7 @@
 
       <mat-divider></mat-divider>
       <br /><br />
-      <button mat-raised-button color="accent" routerLink="/employees">
+      <button mat-raised-button color="aquaBlue" routerLink="/employees">
         Back</button
       >&nbsp;
       <button
@@ -64,7 +67,7 @@
         (click)="updateEmployee(updateForm.controls)"
         [disabled]="updateForm.pristine || updateForm.invalid"
         mat-raised-button
-        color="primary"
+        color="aquaBlue"
       >
         Save
       </button>

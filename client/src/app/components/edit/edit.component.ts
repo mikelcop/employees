@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { Router, ActivatedRoute } from "@angular/router";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
-
+import * as moment from "moment-timezone";
 import { MatSnackBar } from "@angular/material";
 
 import { EmployeesService } from "../../services/employees.service";
@@ -37,6 +37,7 @@ export class EditComponent implements OnInit {
       employee_name: "",
       time_in: "",
       time_out: "",
+      date_created: "",
       active: ""
     });
   }
@@ -58,7 +59,23 @@ export class EditComponent implements OnInit {
   }
 
   updateEmployee(data) {
-    this.employeeService.updateEmployee(this.id, data).subscribe(() => {
+    // const cd = moment().format("MM/DD/YYYY");
+
+    // const timein = `${cd} ${data.time_in.value}`;
+    // const timeout = `${cd} ${data.time_out.value}`;
+
+    // const time_in = moment(timein).format("lll");
+    // const time_out = moment(timeout).format("lll");
+
+    const employee = {
+      user_id: data.user_id.value,
+      employee_name: data.employee_name.value,
+      time_in: data.time_in.value,
+      time_out: data.time_out.value,
+      date_created: moment().format("lll"),
+      active: data.active.value
+    };
+    this.employeeService.updateEmployee(this.id, employee).subscribe(() => {
       this.snackBar.open("Employee updated successfully", "OK", {
         duration: 3000
       });

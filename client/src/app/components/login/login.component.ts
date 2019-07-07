@@ -1,7 +1,9 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
-import { AuthService } from "../../services/auth.service";
+import { MatSnackBar } from "@angular/material";
+import { LoginService } from "../../services/login.service";
+import { Login } from "../../models/login";
 
 @Component({
   selector: "app-login",
@@ -14,13 +16,20 @@ export class LoginComponent implements OnInit {
   success = false;
 
   constructor(
-    private auth: AuthService,
+    private loginService: LoginService,
     private fb: FormBuilder,
-    private router: Router
+    private router: Router,
+    private snackBar: MatSnackBar
   ) {
     this.loginForm = this.fb.group({
-      username: ["", Validators.required],
-      password: ["", Validators.required]
+      username: ["admin", Validators.required],
+      password: ["password", Validators.required]
+    });
+  }
+
+  openSnackBar(message) {
+    this.snackBar.open(message, "OK", {
+      duration: 3000
     });
   }
 
@@ -28,18 +37,26 @@ export class LoginComponent implements OnInit {
     this.submitted = true;
 
     if (this.loginForm.invalid) {
+      this.openSnackBar("Invalid Credentials");
       return;
     }
 
     this.success = true;
-    const data = {
+    const pdata = {
       username: this.loginForm.controls.username.value,
       password: this.loginForm.controls.password.value
     };
-    this.auth.login(data).subscribe(res => {
-      console.log("RESPONSE FROM LOGIN", res);
+    this.loginService.login(pdata).subscribe(data => {
+      if (data.token) {
+        localStorage.setItem("auth-token", data.token);
+        this.router.navigate(["/"]);
+      } else {
+        this.openSnackBar("Invalid Credentials");
+      }
     });
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    //this.loginForm.reset();
+  }
 }

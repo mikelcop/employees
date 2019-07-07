@@ -1,0 +1,20 @@
+<h2 mat-dialog-title>Delete Record Confirmation</h2>
+<mat-divider></mat-divider>
+<mat-dialog-content>
+  <span class="mat-body-1">User ID : </span>
+  <span class="mat-body-2">{{ data.user_id }}</span>
+  <br />
+  <span class="mat-body-1">Employee Name : </span>
+  <span class="mat-body-2">{{ data.employee_name }}</span>
+</mat-dialog-content>
+<mat-divider></mat-divider>
+<br /><br />
+<mat-dialog-content>
+  <span class="mat-body-1">
+    This will delete record and cannot be recovered, Continue?</span
+  >
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close="true">Sure</button>
+  <button mat-button mat-dialog-close="false">Cancel</button>
+</mat-dialog-actions>

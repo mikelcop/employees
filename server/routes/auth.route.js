@@ -1,16 +1,20 @@
 const router = require("express").Router();
-const jwt = requite("jsonwebtoken");
+require("dotenv").config();
+const jwt = require("jsonwebtoken");
 
 router.post("/login", (req, res) => {
   if (req.body.username && req.body.password) {
     if (req.body.username === "admin" && req.body.password === "password") {
-      const token = jwt.sign(
+      const access_token = jwt.sign(
         {
           password: req.body.password
         },
         process.env.SECRET_TOKEN
       );
-      res.status(200).json({ authenticated: true });
+      res
+        .header("auth-token")
+        .send({ authenticated: true, token: access_token });
+      //res.status(200).json({ authenticated: true, token: access_token });
     } else {
       res.status(200).json({ authenticated: false });
     }

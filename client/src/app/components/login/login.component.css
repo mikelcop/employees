@@ -1,0 +1,29 @@
+.mainContainer {
+  margin: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  box-shadow: 5px 5px 20px;
+  display: flex;
+  width: 50%;
+  justify-content: center;
+  align-self: center;
+}
+
+.create-form {
+  min-width: 150px;
+  width: 100%;
+}
+
+.field-full-width {
+  width: 100%;
+  text-align: center;
+}
+
+mat-card {
+  text-align: center;
+  margin: 2em;
+}

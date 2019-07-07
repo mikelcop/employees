@@ -1,5 +1,11 @@
-<mat-toolbar color="accent">
-  <span>Time Tracking App</span>
+<mat-toolbar class="navbar">
+  <span (click)="home()" class="withIcon"
+    ><mat-icon aria-hidden="false" aria-label="Example home icon">home</mat-icon
+    >{{ title }}</span
+  >
+  <span *ngIf="logedIn" (click)="logout()" class="mat-caption asButton">
+    <mat-icon matTooltip="Logout">logout</mat-icon>
+  </span>
 </mat-toolbar>
 <div>
   <router-outlet></router-outlet>

@@ -1,14 +1,13 @@
-<div>
-  <br />
-  <mat-card>
-    <section class="mat-typography">
-      <h3>Login</h3>
-    </section>
-    <mat-divider></mat-divider>
+<div class="mainContainer">
+  <div class="container">
     <br />
-    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-      <h5 *ngIf="success">Your form is valid!</h5>
-      <section>
+    <mat-card>
+      <section class="mat-typography">
+        <h3>Login</h3>
+      </section>
+      <mat-divider></mat-divider>
+      <br />
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="create-form">
         <mat-form-field class="field-full-width">
           <input
             matInput
@@ -22,12 +21,11 @@
             class="error"
           >
             <div *ngIf="loginForm.controls.username.errors.required">
-              Your username is required, bro.
+              Your username is required.
             </div>
           </div>
         </mat-form-field>
-      </section>
-      <section>
+
         <mat-form-field class="field-full-width">
           <input
             matInput
@@ -45,12 +43,11 @@
             </div>
           </div>
         </mat-form-field>
-      </section>
-      <section>
+
         <button type="submit" mat-raised-button color="primary">
           Login
         </button>
-      </section>
-    </form>
-  </mat-card>
+      </form>
+    </mat-card>
+  </div>
 </div>

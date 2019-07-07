@@ -12,6 +12,7 @@
           matInput
           placeholder="Full Name"
           formControlName="employee_name"
+          required
           #title
         />
         <!--<mat-error *ngIf="addEmployeeForm.controls['employee_name'].errors.required">
@@ -23,16 +24,20 @@
           matInput
           placeholder="User ID"
           formControlName="user_id"
+          required
           #responsible
         />
       </mat-form-field>
+
       <mat-form-field class="field-full-width">
         <input
           matInput
           placeholder="Time-In"
           formControlName="time_in"
           #description
+          [ngxTimepicker]="timeInPicker"
         />
+        <ngx-material-timepicker #timeInPicker></ngx-material-timepicker>
       </mat-form-field>
       <mat-form-field class="field-full-width">
         <input
@@ -40,7 +45,9 @@
           placeholder="Time-Out"
           formControlName="time_out"
           #description
+          [ngxTimepicker]="timeOutPicker"
         />
+        <ngx-material-timepicker #timeOutPicker></ngx-material-timepicker>
       </mat-form-field>
       <section class="field-full-width">
         <mat-slide-toggle
@@ -55,15 +62,15 @@
 
       <mat-divider></mat-divider>
       <br /><br />
-      <button mat-raised-button color="accent" routerLink="/employees">
-        Back</button
+      <button mat-raised-button color="aquaBlue" routerLink="/employees">
+        View Employee List</button
       >&nbsp;
       <button
         type="submit"
         (click)="addEmployee(addEmployeeForm.controls)"
         [disabled]="addEmployeeForm.pristine || addEmployeeForm.invalid"
         mat-raised-button
-        color="primary"
+        color="aquaBlue"
       >
         Save
       </button>

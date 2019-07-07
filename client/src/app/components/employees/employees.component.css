@@ -5,3 +5,31 @@ table {
 .mat-column-right {
   text-align: center;
 }
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 10px;
+}
+.fullWidth {
+  flex: 1 0 100%;
+  display: flex;
+  justify-content: center;
+}
+mat-spinner {
+  zoom: 0.5;
+}
+
+table {
+  width: 100%;
+}
+
+th.mat-sort-header-sorted {
+  color: black;
+}
+
+.search {
+  display: flex;
+  justify-content: flex-end;
+  align-items: baseline;
+}

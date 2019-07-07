@@ -1,0 +1,20 @@
+.navbar {
+  justify-content: space-between;
+  background: #6be1d7;
+  color: #fff;
+}
+
+.asButton {
+  cursor: pointer;
+}
+
+.withIcon {
+  border-bottom: 1px solid;
+  padding: 0 15px;
+  border-radius: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  justify-self: center;
+  cursor: pointer;
+}

@@ -1,36 +1,55 @@
 <div>
   <br />
   <mat-card>
-    <button mat-raised-button color="primary" routerLink="/create">
-      Add Employee
+    <button mat-raised-button color="aquaBlue" routerLink="/create">
+      Add Employee <mat-icon>add</mat-icon>
     </button>
-    <br /><br />
+    <br />
     <mat-divider>|</mat-divider>
     <br />
-    <table mat-table [dataSource]="employees">
+    <div class="search">
+      <mat-form-field>
+        <input
+          (keyup)="applyFilter($event.target.value)"
+          matInput
+          placeholder="Search"
+        />
+      </mat-form-field>
+    </div>
+
+    <table mat-table [dataSource]="employees" matSort class="mat-elevation-z8">
       <ng-container matColumnDef="user_id">
-        <th mat-header-cell *matHeaderCellDef>Title</th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>User ID</th>
         <td mat-cell *matCellDef="let element">{{ element.user_id }}</td>
       </ng-container>
 
       <ng-container matColumnDef="employee_name">
-        <th mat-header-cell *matHeaderCellDef>Employee Name</th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Employee Name</th>
         <td mat-cell *matCellDef="let element">{{ element.employee_name }}</td>
       </ng-container>
 
+      <ng-container matColumnDef="date_created">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Date Created</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.date_created | date: "mediumDate" }}
+        </td>
+      </ng-container>
+
       <ng-container matColumnDef="time_in">
-        <th mat-header-cell *matHeaderCellDef>Time In</th>
-        <td mat-cell *matCellDef="let element">{{ element.time_in }}</td>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Time In</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.time_in }}
+        </td>
       </ng-container>
       <ng-container matColumnDef="time_out">
-        <th mat-header-cell *matHeaderCellDef>Time Out</th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Time Out</th>
         <td mat-cell *matCellDef="let element">
-          {{ element.time_out | date: "shortTime" }}
+          {{ element.time_out }}
         </td>
       </ng-container>
 
       <ng-container matColumnDef="active">
-        <th mat-header-cell *matHeaderCellDef>Active</th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Active</th>
         <td mat-cell *matCellDef="let element">{{ element.active }}</td>
       </ng-container>
 
@@ -44,10 +63,10 @@
             color="primary"
             (click)="editEmployee(element._id)"
           >
-            Edit
+            <mat-icon matTooltip="Edit this Record">edit</mat-icon>
           </button>
-          <button mat-button color="warn" (click)="deleteEmployee(element._id)">
-            Delete
+          <button mat-button color="warn" (click)="openDialog(element)">
+            <mat-icon matTooltip="Delete this Record">delete</mat-icon>
           </button>
         </td>
       </ng-container>
@@ -55,5 +74,23 @@
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
     </table>
+
+    <mat-paginator
+      [length]="length"
+      [pageSize]="pageSize"
+      [pageSizeOptions]="pageSizeOptions"
+      (page)="pageEvent = $event"
+    >
+    </mat-paginator>
+
+    <div *ngIf="loading" class="container">
+      <div class="fullWidth">
+        <mat-spinner color="accent" size="50"></mat-spinner>
+      </div>
+
+      <div class="fullWidth">
+        if loading takes too long, try refreshing the page
+      </div>
+    </div>
   </mat-card>
 </div>
