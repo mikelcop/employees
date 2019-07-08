@@ -32,11 +32,14 @@
       <mat-form-field class="field-full-width">
         <input
           matInput
-          placeholder="Time-In"
+          placeholder="Time-In "
           formControlName="time_in"
           #description
           [ngxTimepicker]="timeInPicker"
         />
+        <mat-hint align="start"
+          ><strong>Click here do not type</strong>
+        </mat-hint>
         <ngx-material-timepicker #timeInPicker></ngx-material-timepicker>
       </mat-form-field>
       <mat-form-field class="field-full-width">
@@ -47,8 +50,12 @@
           #description
           [ngxTimepicker]="timeOutPicker"
         />
+        <mat-hint align="start"
+          ><strong>Click here do not type</strong>
+        </mat-hint>
         <ngx-material-timepicker #timeOutPicker></ngx-material-timepicker>
       </mat-form-field>
+      <br /><br />
       <section class="field-full-width">
         <mat-slide-toggle
           [color]="color"

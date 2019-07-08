@@ -12,22 +12,20 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
-/* 
-  Enable this if you have monggo database installed and running on local machine
-*/
-//mongoose.connect("mongodb://localhost:27017/employees");
-
-/* 
-  Enable this if dont have Mongodb in local machine.  Just make sure you have internet connection
-*/
-mongoose.connect(
-  "mongodb://devuser1:password1@ds347367.mlab.com:47367/employee_record"
-);
+const db_connection_string = `mongodb://localhost:27017/employees`;
+const db_connection = process.env.DB_CONNECTION || db_connection_string;
+mongoose.connect(db_connection);
 
 const connection = mongoose.connection;
 
+const connectionMessage = process.env.DB_CONNECTION
+  ? "tru Internet "
+  : " to local machine";
+
 connection.once("open", () => {
-  console.log("MongoDB database connection established successfully!");
+  console.log(
+    `MongoDB database connection ${connectionMessage} established successfully!`
+  );
 });
 
 app.use("/api/employees", employeesRoutes);

@@ -61,9 +61,31 @@ export class CreateComponent implements OnInit {
       if (res.length > 0) {
         this.openSnackBar("User ID already Exist");
       } else {
-        this.saveEmployee(data);
+        if (this.validateTimeIn(data)) {
+          this.saveEmployee(data);
+        }
       }
     });
+  }
+
+  validateTimeIn(input): boolean {
+    const user_id: number = input.user_id.value;
+    const timein: string = input.time_in.value;
+    const timeout: string = input.time_out.value;
+    let found: boolean;
+    let invalidTime: boolean;
+    const curDate: Date = moment().format("ll");
+    const time_in: any = moment(`${curDate} ${timein}`);
+    const time_out: Date = moment(`${curDate} ${timeout}`);
+    const timeDiff: number = time_in.diff(time_out, "minutes");
+
+    if (timeDiff >= 0) {
+      invalidTime = true;
+      this.openSnackBar("Time-out should not be equal or less than Time-in.");
+    } else {
+      invalidTime = false;
+    }
+    return !invalidTime;
   }
 
   ngOnInit() {}
