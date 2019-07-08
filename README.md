@@ -1,10 +1,13 @@
 # employees
 
 Downloading and Using the Application.
+Note : You should use git bash terminal.
+	Here is the link to download and install https://git-scm.com/downloads
+
 
 1. Clone application. 
      Copy the link "git clone https://github.com/mikelcop/employees.git".     
-     Open a terminal window.
+     Open a bash terminal window.
      Make directory of your choice and get inside to that directory.
      paste the link that you copy.
     
